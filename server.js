@@ -14,7 +14,7 @@ const serverPort = parseInt(process.env.PTP_PORT) || 8090
 const proxyHost = process.env.PTP_PROXY_HOST || 'proxy.mycompany.com';
 const proxyPort = parseInt(process.env.PTP_PROXY_PORT) || 8080;
 const target = process.env.PTP_TARGET || 'http://www.target.com';
-const targetProtocol = process.env.PTP_TARGET_PROTO || 'HTTP';
+const targetProtocol = process.env.PTP_TARGET_PROTO || 'http';
 
 // Create a proxy server
 var proxy = httpProxy.createProxyServer({});
@@ -36,6 +36,11 @@ var server = http.createServer(function(req, res) {
     proxy.web(req, res, {target: target, agent: agent});
 });
 
+console.log(`proxy host: ${proxyHost}`);
+console.log(`proxy port: ${proxyPort}`);
+console.log(`target: ${target}`);
+console.log(`target protocol: ${targetProtocol}`);
+
 // Start the custom server
-console.log(`Listening on port ${serverPort}`);
-server.listen(5050);
+console.log(`*** Listening on port ${serverPort} ***`);
+server.listen(serverPort);
