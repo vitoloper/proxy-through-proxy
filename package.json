@@ -1,0 +1,24 @@
+{
+  "name": "proxy-through-proxy",
+  "version": "1.0.0",
+  "description": "http proxy which proxies requests through another proxy",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitoloper/proxy-through-proxy.git"
+  },
+  "author": "vitoloper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vitoloper/proxy-through-proxy/issues"
+  },
+  "homepage": "https://github.com/vitoloper/proxy-through-proxy#readme",
+  "dependencies": {
+    "http-proxy": "^1.17.0",
+    "http-proxy-agent": "^2.1.0",
+    "https-proxy-agent": "^2.2.1"
+  }
+}
