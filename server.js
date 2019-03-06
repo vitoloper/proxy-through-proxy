@@ -1,7 +1,7 @@
 var http = require('http');
 var httpProxy = require('http-proxy');
 var httpProxyAgent = require('http-proxy-agent');
-var httpsProxyAgent = require('http-proxy-agent');
+var httpsProxyAgent = require('https-proxy-agent');
 
 // Environment variables used to configure the application
 // Examples:
