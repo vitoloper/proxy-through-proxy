@@ -21,7 +21,7 @@ var proxy = httpProxy.createProxyServer({});
 
 // Log requests
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
-    console.log(`Received request from ${req.connection.remoteAddress}`);
+    console.log(new Date().toISOString(), '-', `Received request from ${req.connection.remoteAddress}`);
 });
 
 // Create a proxy agent
