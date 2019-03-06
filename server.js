@@ -19,6 +19,11 @@ const targetProtocol = process.env.PTP_TARGET_PROTO || 'http';
 // Create a proxy server
 var proxy = httpProxy.createProxyServer({});
 
+// Log requests
+proxy.on('proxyReq', function(proxyReq, req, res, options) {
+    console.log(`Received request from ${req.connection.remoteAddress}`);
+});
+
 // Create a proxy agent
 var agent;
 
