@@ -20,12 +20,9 @@ const hostHeader = process.env.PTP_HOST_HEADER;
 // Create a proxy server
 var proxy = httpProxy.createProxyServer({});
 
-// Log requests and perform request customization
+// Log requests
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
     console.log(new Date().toISOString(), '-', `Received request from ${req.connection.remoteAddress}`);
-    // Change 'Host' HTTP header
-    if (hostHeader)
-        proxyReq.setHeader('Host', hostHeader);
 });
 
 // Create a proxy agent
@@ -41,7 +38,11 @@ if (targetProtocol.toLowerCase() === 'https') {
 
 // Create a custom server and use 'proxy.web' to proxy a web request to the target
 var server = http.createServer(function(req, res) {
-    // NOTE: it is also possible to define a custom logic here
+    // NOTE: we have to modify the HTTP request headers here, otherwise an error will occur
+    // (the node-agent/http-proxy interaction causes an error if we modify the headers in
+    // proxyReq.on)
+    if (hostHeader)
+        req.headers['host'] = hostHeader;
     proxy.web(req, res, {target: target, agent: agent});
 });
 
