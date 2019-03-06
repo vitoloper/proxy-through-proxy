@@ -20,5 +20,8 @@
     "http-proxy": "^1.17.0",
     "http-proxy-agent": "^2.1.0",
     "https-proxy-agent": "^2.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.1"
   }
 }
