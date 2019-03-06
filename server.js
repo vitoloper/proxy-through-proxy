@@ -15,13 +15,17 @@ const proxyHost = process.env.PTP_PROXY_HOST || 'proxy.mycompany.com';
 const proxyPort = parseInt(process.env.PTP_PROXY_PORT) || 8080;
 const target = process.env.PTP_TARGET || 'http://www.target.com';
 const targetProtocol = process.env.PTP_TARGET_PROTO || 'http';
+const hostHeader = process.env.PTP_HOST_HEADER;
 
 // Create a proxy server
 var proxy = httpProxy.createProxyServer({});
 
-// Log requests
+// Log requests and perform request customization
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
     console.log(new Date().toISOString(), '-', `Received request from ${req.connection.remoteAddress}`);
+    // Change 'Host' HTTP header
+    if (hostHeader)
+        proxyReq.setHeader('Host', hostHeader);
 });
 
 // Create a proxy agent
